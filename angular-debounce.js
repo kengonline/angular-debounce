@@ -1,5 +1,5 @@
 angular.module('ng-debounce', [])
-    .factory('CommonService', function () {
+    .factory('DebounceCommonService', function () {
         return {
             getIndexByAttr: function (list, attrName, value) {
                 if (!angular.isArray(list) || typeof attrName !== 'string') {
@@ -19,7 +19,7 @@ angular.module('ng-debounce', [])
             }
         };
     })
-    .factory('$debounce', ['$timeout', 'CommonService', function ($timeout, CommonService) {
+    .factory('$debounce', ['$timeout', 'DebounceCommonService', function ($timeout, DebounceCommonService) {
         var funcArr = [];
         return {
             debounce: function (func, waitTime) {
@@ -27,20 +27,20 @@ angular.module('ng-debounce', [])
                     throw "error data type of arguments.";
                 }
 
-                var index = CommonService.getIndexByAttr(funcArr, 'func', func);
+                var index = DebounceCommonService.getIndexByAttr(funcArr, 'func', func);
                 var timeout;
 
                 if (index > -1) {
                     $timeout.cancel(funcArr[index].timeout);
 
                     funcArr[index].timeout = $timeout(function () {
-                        var funcIndex = CommonService.getIndexByAttr(funcArr, 'func', func);
+                        var funcIndex = DebounceCommonService.getIndexByAttr(funcArr, 'func', func);
                         funcArr[funcIndex].func();
                         funcArr.splice(funcIndex, 1);
                     }, waitTime);
                 } else {
                     timeout = $timeout(function () {
-                        var funcIndex = CommonService.getIndexByAttr(funcArr, 'func', func);
+                        var funcIndex = DebounceCommonService.getIndexByAttr(funcArr, 'func', func);
                         funcArr[funcIndex].func();
                         funcArr.splice(funcIndex, 1);
                     }, waitTime);
