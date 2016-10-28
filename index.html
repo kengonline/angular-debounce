@@ -1,0 +1,19 @@
+
+
+    <!doctype html>
+    <html ng-app="ng-debounce">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+        <script src="angular-debounce.js"></script>
+      </head>
+      <body>
+        <div>
+            <h2>Todo</h2>
+            <button ng-click="debounce.add()">add</button>
+            <div ng-repeat="data in debounce.list">
+                {{data}}
+            </div>
+        </div>
+      </body>
+    </html>
+
