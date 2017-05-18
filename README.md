@@ -1,5 +1,5 @@
 # angular-debounce
-sample debounce service for angularjs
+simple debounce service for angularjs
 
 # Example
   http://plnkr.co/edit/bP0IV8gfciwZ38NsPLPW?p=preview
